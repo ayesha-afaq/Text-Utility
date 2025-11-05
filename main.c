@@ -4,16 +4,17 @@
 
 void user_input(char*text, int size);
 int get_option();
-
+void remove_extra_spaces(char*text);
+void convert_to_uppercase(char *text);
+void analyze_text(const char *text);
 
 int main(){
-
     // max size of text
     const int MAX_LENGTH = 1000;
     // array for text
     char text[MAX_LENGTH];
 
-    // user_input(text, MAX_LENGTH);
+    user_input(text, MAX_LENGTH);
 
     int run=1;
     while(run){
@@ -22,9 +23,13 @@ int main(){
         switch (option_num)
         {
         case 1:
-            // func call
+            remove_extra_spaces(text);
+            break;
+        case 2:
+            convert_to_uppercase(text);
             break;
         case 3:
+            analyze_text(text);
             break;
             // func call
         case 4:
@@ -54,14 +59,13 @@ int main(){
     }
     
     return 0;
- 
 }
 
 int get_option(){
     int option_num;
     int result;
 
-    printf("\n1.first\n2.second\n3.third\n4.fourth\n5.fifth\n6.sixth\n7.seven\n8.eigth\n9.exit");
+    printf("\n1.Remove Extra Spaces\n2.Convert to Uppercase\n3.Analyze Text\n4.fourth\n5.fifth\n6.sixth\n7.seven\n8.eigth\n9.exit");
 
     while(1){
         printf("\nChoose Option: ");
@@ -110,6 +114,41 @@ void user_input(char*text,int size){
 
 
 }
+
+void remove_extra_spaces(char *text){
+
+    int i = 0, j = 0;
+    int space_found = 0;
+
+    // Skip leading spaces
+    while (isspace((unsigned char)text[i]))
+        i++;
+
+    // Process each character
+    for (; text[i] != '\0'; i++)
+    {
+        if (!isspace((unsigned char)text[i]))
+        {
+            text[j++] = text[i];
+            space_found = 0;
+        }
+        else if (!space_found)
+        {
+            // copy one space between words
+            text[j++] = ' ';
+            space_found = 1;
+        }
+    }
+
+    // remove trailing space
+    if (j > 0 && text[j - 1] == ' ')
+        j--;
+
+    text[j] = '\0'; // terminate string
+
+    printf("\nText after removing extra spaces:\n%s\n", text);
+}
+
 void convert_to_uppercase(char* text) {
 
 
