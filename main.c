@@ -7,6 +7,8 @@ int get_option();
 void remove_extra_spaces(char*text);
 void convert_to_uppercase(char *text);
 void analyze_text(const char *text);
+void convert_to_lowercase(char*text);
+void count_word_frequency(const char *text);
 
 int main(){
     // max size of text
@@ -33,9 +35,11 @@ int main(){
             break;
             // func call
         case 4:
+            convert_to_lowercase(text);
             break;
             // func call
         case 5:
+            count_word_frequency(text);
             break;
             // func call
         case 6:
@@ -191,4 +195,56 @@ void analyze_text(const char* text) {
     printf("\nWord Count: %d", word_count);
     printf("\nSentence Count: %d", sentence_count);
     printf("\nCharacter Count (non-space): %d\n", char_count);
+}
+
+
+void convert_to_lowercase(char*text) {
+    for (int i = 0; text[i] != '\0'; i++) {
+        text[i] = tolower((unsigned char) text[i]);
+    }
+    printf("\nConverted Text in Lowercase Letters:\n");
+    printf("%s\n", text);
+}
+
+void count_word_frequency(const char *text) {
+    char temp[1000];
+    strcpy(temp, text);
+
+    // convert whole text to lowercase
+    for (int i = 0; temp[i]; i++)
+        temp[i] = tolower((unsigned char)temp[i]);
+
+    // arrays for words and counts
+    char words[200][50];
+    int freq[200] = {0};
+    int wc = 0;
+
+    // split into words
+    char *token = strtok(temp, " .,!?;:\n\t");
+
+    while (token) {
+        int found = 0;
+
+        // check if already counted
+        for (int i = 0; i < wc; i++) {
+            if (strcmp(words[i], token) == 0) {
+                freq[i]++;
+                found = 1;
+                break;
+            }
+        }
+
+        if (!found) {  // new word
+            strcpy(words[wc], token);
+            freq[wc] = 1;
+            wc++;
+        }
+
+        token = strtok(NULL, " .,!?;:\n\t");
+    }
+
+    // print result
+    printf("\nWord Frequency:\n");
+    for (int i = 0; i < wc; i++)
+        printf("%s : %d\n", words[i], freq[i]);
 }
