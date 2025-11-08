@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
+#define MAX 1000
 
 void user_input(char*text, int size);
 int get_option();
@@ -9,6 +10,8 @@ void convert_to_uppercase(char *text);
 void analyze_text(const char *text);
 void convert_to_lowercase(char*text);
 void count_word_frequency(const char *text);
+void appendString(char *original, const char *toAppend) ;
+void findAndReplace(char *str, const char *oldWord, const char *newWord) ;
 
 int main(){
     // max size of text
@@ -248,3 +251,40 @@ void count_word_frequency(const char *text) {
     for (int i = 0; i < wc; i++)
         printf("%s : %d\n", words[i], freq[i]);
 }
+void findAndReplace(char *str, const char *oldWord, const char *newWord) 
+{
+    char result[MAX];
+    int i = 0, j = 0;
+    int oldLen = strlen(oldWord);
+    int newLen = strlen(newWord);
+
+    while (str[i] != '\0') 
+    {
+        if (strstr(&str[i], oldWord) == &str[i]) 
+        {
+            strcpy(&result[j], newWord);
+            j += newLen;
+            i += oldLen;
+        } 
+        else 
+        {
+            result[j++] = str[i++];
+        }
+    }
+
+    result[j] = '\0';
+    strcpy(str, result); 
+}
+void appendString(char *original, const char *toAppend) 
+{
+    int len = strlen(original);
+
+    if (len > 0 && original[len - 1] != ' ') 
+    {
+        strcat(original, " ");
+    }
+
+    strcat(original, toAppend);
+}
+
+
