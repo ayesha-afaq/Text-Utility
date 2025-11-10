@@ -46,9 +46,20 @@ int main(){
             break;
             // func call
         case 6:
+            printf("Enter text to append: ");
+            fgets(add, sizeof(add), stdin);
+            add[strcspn(add, "\n")] = '\0';  
+            appendString(text,add) 
             break;
             // func call
         case 7:
+            printf("Enter the word to find: ");
+            scanf("%s", find);
+
+            printf("Enter the word to replace with: ");
+            scanf("%s", replace);
+
+            findAndReplace(text, find, replace) ;
             break;
             // func call
         case 8:
