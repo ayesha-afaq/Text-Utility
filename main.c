@@ -47,20 +47,10 @@ int main(){
             break;
             // func call
         case 6:
-            printf("Enter text to append: ");
-            fgets(add, sizeof(add), stdin);
-            add[strcspn(add, "\n")] = '\0';  
-
             appendString(text, add);
             break;
             // func call
         case 7:
-            printf("Enter the word to find: ");
-            scanf("%s", find);
-
-            printf("Enter the word to replace with: ");
-            scanf("%s", replace);
-
             findAndReplace(text, find, replace);
             break;
             // func call
@@ -263,6 +253,11 @@ void count_word_frequency(const char *text) {
 }
 void findAndReplace(char *str, const char *oldWord, const char *newWord) 
 {
+    printf("Enter the word to find: ");
+            scanf("%s", oldWord);
+
+            printf("Enter the word to replace with: ");
+            scanf("%s", newWord);
     char result[MAX];
     int i = 0, j = 0;
     int oldLen = strlen(oldWord);
@@ -284,6 +279,7 @@ void findAndReplace(char *str, const char *oldWord, const char *newWord)
 
     result[j] = '\0';
     strcpy(str, result); 
+    printf("Updated text: %s\n", str);
 }
 void appendString(char *original)
 {
