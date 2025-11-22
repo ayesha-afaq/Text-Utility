@@ -20,6 +20,7 @@ int main(){
     char text[MAX_LENGTH];
 
     user_input(text, MAX_LENGTH);
+    char add[500],find[200],replace[200];
 
     int run=1;
     while(run){
