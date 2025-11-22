@@ -47,7 +47,7 @@ int main(){
             break;
             // func call
         case 6:
-            appendString(text, add);
+            appendString(text);
             break;
             // func call
         case 7:
