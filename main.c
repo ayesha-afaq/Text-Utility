@@ -65,9 +65,6 @@ int main(){
             break;
             // func call
         case 8:
-            break;
-            // func call
-        case 9:
             printf("Exititng Program");
             run=0;
             break;
@@ -85,7 +82,7 @@ int get_option(){
     int option_num;
     int result;
 
-   printf("\n1.Remove Extra Spaces\n2.Convert to Uppercase\n3.Analyze Text\n4.Convert to lower case\n5.Count word frequency\n6.Append string\n7.Find and Replace\n8.eigth\n9.exit");
+   printf("\n1.Remove Extra Spaces\n2.Convert to Uppercase\n3.Analyze Text\n4.Convert to lower case\n5.Count word frequency\n6.Append string\n7.Find and Replace\n8.exit");
 
     while(1){
         printf("\nChoose Option: ");
