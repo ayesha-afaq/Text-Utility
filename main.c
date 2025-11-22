@@ -10,7 +10,7 @@ void convert_to_uppercase(char *text);
 void analyze_text(const char *text);
 void convert_to_lowercase(char*text);
 void count_word_frequency(const char *text);
-void appendString(char *original, const char *toAppend) ;
+void appendString(char *text) ;
 void findAndReplace(char *str, const char *oldWord, const char *newWord) ;
 
 int main(){
@@ -285,16 +285,27 @@ void findAndReplace(char *str, const char *oldWord, const char *newWord)
     result[j] = '\0';
     strcpy(str, result); 
 }
-void appendString(char *original, const char *toAppend) 
+void appendString(char *original)
 {
+    char toAppend[200];
+
+    // Flush leftover newline from previous scanf
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+
+    printf("Enter text to append: ");
+    fgets(toAppend, sizeof(toAppend), stdin);
+    original[strcspn(original,"\n")]='\0';
+    toAppend[strcspn(toAppend, "\n")] = '\0';
+
     int len = strlen(original);
 
-    if (len > 0 && original[len - 1] != ' ') 
-    {
+    if (len > 0 && original[len - 1] != ' ')
         strcat(original, " ");
-    }
 
     strcat(original, toAppend);
+
+    printf("Updated text: %s\n", original);
 }
 
 
