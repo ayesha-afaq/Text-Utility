@@ -85,7 +85,7 @@ int get_option(){
     int option_num;
     int result;
 
-    printf("\n1.Remove Extra Spaces\n2.Convert to Uppercase\n3.Analyze Text\n4.fourth\n5.fifth\n6.sixth\n7.seven\n8.eigth\n9.exit");
+   printf("\n1.Remove Extra Spaces\n2.Convert to Uppercase\n3.Analyze Text\n4.Convert to lower case\n5.Count word frequency\n6.Append string\n7.Find and Replace\n8.eigth\n9.exit");
 
     while(1){
         printf("\nChoose Option: ");
