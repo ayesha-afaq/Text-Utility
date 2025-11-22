@@ -11,7 +11,7 @@ void analyze_text(const char *text);
 void convert_to_lowercase(char*text);
 void count_word_frequency(const char *text);
 void appendString(char *text) ;
-void findAndReplace(char *str, const char *oldWord, const char *newWord) ;
+void findAndReplace(char *text, const char *oldWord, const char *newWord) ;
 
 int main(){
     // max size of text
@@ -20,7 +20,7 @@ int main(){
     char text[MAX_LENGTH];
 
     user_input(text, MAX_LENGTH);
-    char add[500],find[200],replace[200];
+    char find[200],replace[200];
 
     int run=1;
     while(run){
