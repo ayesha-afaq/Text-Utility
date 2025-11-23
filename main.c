@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
+// max size of text
 #define MAX 1000
 
 // Function declarations
@@ -15,13 +16,13 @@ void appendString(char *text);
 void findAndReplace(char *text, const char *oldWord, const char *newWord);
 
 int main(){
-    // max size of text
-    const int MAX_LENGTH = 1000;
     // array for storing user text
-    char text[MAX_LENGTH];
+    char text[MAX];
 
+    printf("\n------ TEXT UTILITY PROGRAM ------\n\n");
+    
     // calling function to take multiline input
-    user_input(text, MAX_LENGTH);
+    user_input(text, MAX);
 
     // arrays for storing words to find and replace
     char find[200], replace[200];
@@ -81,7 +82,7 @@ int get_option(){
     int result;
 
     // display menu options
-    printf("\n1.Remove Extra Spaces\n2.Convert to Uppercase\n3.Analyze Text\n4.Convert to lower case\n5.Count word frequency\n6.Append string\n7.Find and Replace\n8.exit");
+    printf("\n1.Remove Extra Spaces\n2.Convert to Uppercase\n3.Analyze Text\n4.Convert to Lowercase\n5.Count Word Frequency\n6.Append String\n7.Find and Replace\n8.Exit");
 
     while(1){
         printf("\nChoose Option: ");
