@@ -201,40 +201,39 @@ void convert_to_uppercase(char* text) {
 }
 
 void analyze_text(const char* text) {
-    int word_count = 0;        // number of words
-    int sentence_count = 0;    // number of sentences
-    int char_count = 0;        // number of non-space characters
-    int in_word = 0;           // state flag for word detection
+    int word_count = 0;
+    int sentence_count = 0;
+    int in_word = 0;
 
-    // iterate through text
     for (int i = 0; text[i] != '\0'; i++) {
         char ch = text[i];
 
-        // count non-space characters
-        if (!isspace((unsigned char)ch)) {
-            char_count++;
-        }
-
-        // count sentences based on punctuation
-        if (ch == '.' || ch == '?' || ch == '!') {
-            sentence_count++;
-        }
-
-        // detect words
-        if (!isspace((unsigned char)ch)) {
+        // Count words
+        if (isalnum((unsigned char)ch) || ch == '\'' || ch == '-') {
             if (!in_word) {
-                word_count++; // new word starts
+                word_count++;
                 in_word = 1;
             }
         } else {
-            in_word = 0; // reset flag when encountering space
+            in_word = 0;
+        }
+
+        // Count sentences
+        if (ch == '.' || ch == '!' || ch == '?') {
+            // Skip repeated punctuation like "..." or "!!!"
+            int j = i + 1;
+            while (text[j] == ch) j++;
+            // Check if next character is space, newline, or end-of-string
+            if (text[j] == '\0' || isspace((unsigned char)text[j])) {
+                sentence_count++;
+                i = j - 1;  // Skip repeated punctuation
+            }
         }
     }
 
-    // print analysis results
-    printf("\nWord Count: %d", word_count);
-    printf("\nSentence Count: %d", sentence_count);
-    printf("\nCharacter Count (non-space): %d\n", char_count);
+    printf("\n=== Text Analysis ===\n");
+    printf("Word Count: %d\n", word_count);
+    printf("Sentence Count: %d\n", sentence_count);
 }
 
 void convert_to_lowercase(char*text) {
