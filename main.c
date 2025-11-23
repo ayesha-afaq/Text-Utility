@@ -137,36 +137,56 @@ void user_input(char*text,int size){
 void remove_extra_spaces(char *text){
 
     int i = 0, j = 0;
-    int space_found = 0; // flag for consecutive spaces
+    int space_found = 0;
+
+    // punctuation characters that must NOT have space before them
+    char punct[] = ".,!?;:";
 
     // Skip leading spaces
     while (isspace((unsigned char)text[i]))
         i++;
 
-    // Process each character
     for (; text[i] != '\0'; i++)
     {
+        // 1. Remove space BEFORE punctuation
+        if (strchr(punct, text[i]) != NULL && j > 0 && text[j - 1] == ' ')
+        {
+            j--; // remove extra space
+        }
+
+        // 2. Remove space AFTER opening quotes
+        if ((text[j - 1] == '"' || text[j - 1] == '\'') &&
+            text[i] == ' ')
+        {
+            continue;
+        }
+
+        //3. Remove space BEFORE closing quotes
+        if ((text[i] == '"' || text[i] == '\'') &&
+            j > 0 && text[j - 1] == ' ')
+        {
+            j--;
+        }
+        // 5. Normal character handling
         if (!isspace((unsigned char)text[i]))
         {
-            // copy non-space characters
             text[j++] = text[i];
             space_found = 0;
         }
         else if (!space_found)
         {
-            // copy only one space between words
             text[j++] = ' ';
             space_found = 1;
         }
     }
 
-    // remove trailing space
+    // Remove trailing space
     if (j > 0 && text[j - 1] == ' ')
         j--;
 
-    text[j] = '\0'; // terminate string
+    text[j] = '\0';
 
-    printf("\nText after removing extra spaces:\n%s\n", text);
+    printf("\nText after cleanup:\n%s\n", text);
 }
 
 void convert_to_uppercase(char* text) {
