@@ -98,7 +98,7 @@ int get_option(){
         }
 
         // validate range
-        if (option_num >= 1 && option_num <= 9)
+        if (option_num >= 1 && option_num <= 8)
             break;
         else{
             printf("Invalid! Please enter between 1 and 8");
