@@ -90,7 +90,7 @@ int get_option(){
 
         if (result != 1){
             // scanf failed (user didn't enter a number)
-            printf("Invalid input! Please enter a number between 1 and 9.\n");
+            printf("Invalid input! Please enter a number between 1 and 8.\n");
 
             // clear leftover characters from input buffer
             while (getchar() != '\n');
@@ -101,7 +101,7 @@ int get_option(){
         if (option_num >= 1 && option_num <= 9)
             break;
         else{
-            printf("Invalid! Please enter between 1 and 9");
+            printf("Invalid! Please enter between 1 and 8");
         }
     }
     return option_num;
